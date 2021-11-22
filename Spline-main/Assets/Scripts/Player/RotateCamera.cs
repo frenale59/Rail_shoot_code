@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RotateCamera : MonoBehaviour
@@ -16,11 +14,12 @@ public class RotateCamera : MonoBehaviour
 
     void Update() 
     {
+
         rotationY += speedV * Input.GetAxis("Mouse X");
         rotationX -= speedH * Input.GetAxis("Mouse Y");
 
-        rotationX = Mathf.Clamp(rotationX, -50f, 50f);
-        rotationY = Mathf.Clamp(rotationY, -90f, 90f);
+        rotationX = Mathf.Clamp(rotationX, -60, 60);
+        rotationY = Mathf.Clamp(rotationY, -90, 90);
 
         transform.eulerAngles = new Vector3(rotationX, rotationY, 0);
     }
