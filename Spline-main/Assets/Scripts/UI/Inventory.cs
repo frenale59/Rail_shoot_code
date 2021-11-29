@@ -4,12 +4,14 @@ using TMPro;
 
 public class Inventory : MonoBehaviour
 {
-    public static Inventory instance;
-
+    #region Header
     [Header ("Collectibles")]
     public int formsTouch;
     public Text formsTouchText;
+    #endregion
 
+    #region API
+    public static Inventory instance;
     private void Awake() 
     {
         if(instance != null)
@@ -26,4 +28,5 @@ public class Inventory : MonoBehaviour
         formsTouch += count;
         formsTouchText.text = formsTouch.ToString();
     }
+    #endregion
 }
