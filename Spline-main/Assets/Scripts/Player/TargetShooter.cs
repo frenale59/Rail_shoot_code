@@ -9,6 +9,8 @@ public class TargetShooter : MonoBehaviour
     [SerializeField] Camera cam;
 
     [SerializeField] public ParticleSystem ParticleSystem;
+
+    [SerializeField] public AudioSource GunSound;
     #endregion
 
     #region API
@@ -16,7 +18,8 @@ public class TargetShooter : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            
+            GunSound.Stop();
+            GunSound.Play();
             ParticleSystem.Play();
 
 
