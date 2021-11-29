@@ -1,9 +1,14 @@
 using UnityEngine;
+using Unity;
+using System.Collections;
+using System.Collections.Generic;
 
 public class TargetShooter : MonoBehaviour
 {
     #region Serialize Fields
     [SerializeField] Camera cam;
+
+    [SerializeField] public ParticleSystem ParticleSystem;
     #endregion
 
     #region API
@@ -11,6 +16,10 @@ public class TargetShooter : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            
+            ParticleSystem.Play();
+
+
             Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f));
             if(Physics.Raycast(ray, out RaycastHit hit))
             {
