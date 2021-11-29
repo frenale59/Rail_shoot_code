@@ -88,6 +88,11 @@ public class SplineBest : MonoBehaviour
         }
     }
 
+    public float Remap(float value, float from1, float to1, float from2, float to2)
+    {
+        return (value -  from1) / (to1 - from1) * (to2 - from2) + from2;
+    }
+
     private float getTFactorWithDistance(float distance)
     {
         int goodIndex = 0;
@@ -104,7 +109,16 @@ public class SplineBest : MonoBehaviour
             }
         }
 
-        return (float)goodIndex / _nbPointsToComputeLength;
+        if (goodIndex == 0)
+        {
+            return 0;
+        }
+
+        int lastindex = goodIndex - 1;
+
+        float factor = Remap(distance, _lengths[lastindex], _lengths[goodIndex], 0, 1);
+
+        return (goodIndex + factor) / _nbPointsToComputeLength;
     }
 
     public Vector3 computeVelocityWithLength(float distance)
